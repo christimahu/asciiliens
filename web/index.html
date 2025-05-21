@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCIIliens - Turn-Based ASCII Arcade Action</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container"> <header>
+            <h1>ASCIIliens</h1>
+            <p>ASCII + Aliens = ASCIIliens -- Turn-Based ASCII Arcade Action.</p>
+            <p>This project is a nostalgic recreation of one of my very first programs, originally written in Borland C++ when I was 13 years old. Back then, it ran on an incredible machine: an x386sx, boasting a whopping 4MB of RAM (with an expansion board!), and displayed its glory on a CRT monitor that knew only green letters – no fancy graphics, just pure ASCII.</p>
+            <p>This rewrite in Rust is a fun way to keep that original program alive, bringing its core logic and turn-based gameplay into a modern, safe, and performant language.</p>
+        </header>
+
+        <main>
+            <section class="readme-section">
+                <h2>Features</h2>
+                <ul>
+                    <li>Classic Space Invaders-inspired gameplay</li>
+                    <li>Turn-based action, where each move or **blast** advances the game</li>
+                    <li>Retro ASCII art visuals</li>
+                    <li>Player movement (left/right) and firing **blasts**</li>
+                    <li>Alien movement and explosion animations</li>
+                    <li>Scoring system</li>
+                </ul>
+            </section>
+
+            <section class="readme-section">
+                <h2>How to Play</h2>
+                <ol>
+                    <li><strong>Navigate:</strong> Use the <code>LEFT</code> and <code>RIGHT</code> arrow keys to move your ship (║_||_║).</li>
+                    <li><strong>Fire:</strong> Press <code>SPACE</code> to fire **blasts** (*).</li>
+                    <li><strong>Strategic Action:</strong> Each action (move or fire) advances one game frame. You cannot move and fire in the same 'turn'.</li>
+                    <li><strong>Score:</strong> Start with 100 points, lose 1 point for each movement or **blast**, and gain 250 points for destroying an ASCIIlien.</li>
+                    <li><strong>Win/Lose:</strong> Defeat all aliens to win, or lose if aliens reach the bottom of the screen or collide with your ship.</li>
+                </ol>
+            </section>
+
+            <div class="screenshot-container">
+                <h3>In-Game Screenshot</h3>
+                <img src="asciiliens.jpg" alt="Screenshot of ASCIIliens game in action, showing player ship, blasts, and aliens." title="ASCIIliens Gameplay Screenshot">
+                <p>What the game looks like in a terminal environment.</p>
+            </div>
+
+            <section class="readme-section">
+                <h2>Building and Running</h2>
+                <p>To compile and run ASCIIliens, you will need the Rust toolchain installed.</p>
+                <pre><code class="language-bash"># Clone the repository (if you haven't already)
+git clone https://github.com/your-username/asciiliens.git
+cd asciiliens
+
+# Build the project
+cargo build --release
+
+# Run the game
+cargo run --release</code></pre>
+            </section>
+
+            <section class="readme-section">
+                <h2>Dependencies</h2>
+                <ul>
+                    <li><code>crossterm</code> for terminal handling</li>
+                    <li><code>rand</code> for random number generation</li>
+                </ul>
+            </section>
+
+            <section class="readme-section">
+                <h2>License</h2>
+                <p>This project is Licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>. See the LICENSE file for details. This means you are free to use, modify, and distribute this game, or incorporate its code into your own projects, provided you adhere to the terms of the license, including maintaining its open-source nature.</p>
+            </section>
+
+            <section class="readme-section">
+                <h2>Contributing</h2>
+                <p>This project is a labor of love, aiming to capture the authentic feel of a very first program. While direct feature contributions to this specific repo might be limited to maintain its original spirit, please visit another Rust repository of mine, such as <a href="https://github.com/christimahu/devrs" target="_blank">DevRS</a>, to collaborate on more active development!</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 <a href="https://christimahu.com/" target="_blank">Christi Mahu</a>. All rights reserved.</p>
+        </footer>
+    </div> <script src="main.js"></script>
+</body>
+</html>

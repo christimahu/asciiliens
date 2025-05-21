@@ -1,0 +1,286 @@
+/* asciiliens/styles.css */
+
+/* CSS Variables for easy theme management */
+:root {
+    --bg-color: #1E142F; /* Dark background with a subtle purple hue (from screenshot) */
+    --text-color: #FF69B4; /* Hot Pink/Vibrant Magenta text (matched directly from screenshot text) */
+    --accent-color: #C850FF; /* A brighter, more electric pink-purple for accents */
+    --border-color: #9932CC; /* A rich, deep purple for borders (closer to what's seen around screenshot) */
+    --shadow-color: rgba(255, 105, 180, 0.6); /* Pink shadow with transparency */
+    --code-bg-color: #3C0A6F; /* Darker, slightly more saturated purple for code block background */
+    --code-text-color: #FFE0F2; /* Very light, almost white-pink for code text */
+    --link-color: #87CEEB; /* Sky blue for links (strong contrast, but fitting the retro feel) */
+    --link-hover-color: #ADD8E6; /* Lighter sky blue on link hover */
+    --header-shadow-color: rgba(255, 105, 180, 0.8); /* Header shadow based on text color */
+}
+
+/* Base Styles */
+body {
+    background-color: var(--bg-color);
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    display: flex; /* Use flexbox to center the container */
+    justify-content: center; /* Center horizontally */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    align-items: flex-start; /* Align content to the top initially, or center if needed */
+}
+
+/* New container for content centering */
+.container {
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for retro feel */
+    color: var(--text-color);
+    margin: 10px; /* Reduced margin for mobile */
+    line-height: 1.6;
+    width: 100%; /* Take full width on small screens */
+    max-width: 800px; /* Max width for desktop content */
+    border: 1px solid var(--border-color);
+    padding: 15px; /* Reduced padding for mobile */
+    box-shadow: 0 0 15px var(--shadow-color);
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    animation: fadeIn 1s ease-out forwards; /* Page fade-in animation */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+/* Fade-in Animation for the whole page */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px; /* Reduced margin for mobile */
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+    animation: headerGlow 2s infinite alternate; /* Header glow animation */
+}
+
+/* Header subtle glowing animation */
+@keyframes headerGlow {
+    from { text-shadow: 0 0 8px var(--header-shadow-color); }
+    to { text-shadow: 0 0 15px rgba(255, 105, 180, 1.0); } /* Full glow using text color */
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 2em; /* Smaller font size for mobile */
+    text-shadow: 0 0 8px var(--header-shadow-color);
+    animation: textPulse 3s infinite alternate; /* H1 text pulse animation */
+}
+
+/* Text pulse animation for H1 */
+@keyframes textPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+h2 {
+    color: var(--accent-color);
+    font-size: 1.5em; /* Smaller font size for mobile */
+    margin-top: 25px;
+    border-bottom: 1px dotted var(--border-color);
+    padding-bottom: 5px;
+    animation: slideInLeft 0.8s ease-out forwards; /* H2 slide-in animation */
+    opacity: 0; /* Hidden initially for animation */
+    animation-delay: 0.5s; /* Delay for H2 animation */
+}
+
+/* Generic slide-in from left animation */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+h3 {
+    color: var(--accent-color);
+    font-size: 1.2em; /* Smaller font size for mobile */
+    margin-top: 15px;
+    animation: fadeIn 1s ease-out forwards; /* H3 fade-in animation */
+    opacity: 0; /* Hidden initially for animation */
+    animation-delay: 1s; /* Delay for H3 animation */
+}
+
+section {
+    margin-bottom: 20px; /* Reduced margin for mobile */
+    padding-bottom: 15px;
+    border-bottom: 1px dotted var(--code-bg-color); /* Use code background for subtle divider */
+    animation: fadeIn 1s ease-out forwards; /* Section fade-in animation */
+    opacity: 0; /* Hidden initially for animation */
+    animation-delay: 0.7s; /* Delay for sections */
+}
+section:last-of-type {
+    border-bottom: none;
+}
+
+ul {
+    list-style-type: '>> '; /* Custom bullet point */
+    padding-left: 20px;
+}
+ul li {
+    margin-bottom: 5px; /* Reduced margin for mobile */
+}
+
+ol {
+    padding-left: 20px;
+}
+ol li {
+    margin-bottom: 5px; /* Reduced margin for mobile */
+}
+
+code {
+    background-color: var(--code-bg-color);
+    color: var(--code-text-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap; /* Prevent inline code from breaking */
+}
+
+pre {
+    background-color: #000;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    overflow-x: auto; /* For long code lines on all screens */
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(255, 105, 180, 0.3); /* Inner shadow based on text color */
+    position: relative; /* For positioning the copy button */
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+}
+a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}
+
+.screenshot-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; /* Bounce-in animation */
+    opacity: 0; /* Hidden initially for animation */
+    animation-delay: 1.2s; /* Delay for screenshot animation */
+}
+
+/* Bounce-in animation for screenshot */
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.screenshot-container img {
+    max-width: 100%; /* Ensure image fits container on mobile */
+    height: auto;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
+}
+
+.screenshot-container img:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.9em;
+    color: var(--accent-color);
+}
+
+/* Copy Code Button Styling */
+.copy-button {
+    background-color: var(--code-bg-color);
+    color: var(--code-text-color); /* Use code text color for button text */
+    border: 1px solid var(--border-color);
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute; /* Position relative to .pre */
+    top: 5px; /* Adjust as needed */
+    right: 5px; /* Position to the right */
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.copy-button:hover {
+    opacity: 1;
+    background-color: var(--border-color);
+}
+
+/* Responsive Design (Media Queries) */
+/* For larger screens (e.g., tablets and desktops) */
+@media (min-width: 600px) {
+    .container {
+        margin: 20px auto; /* Center with auto margins for desktop */
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em; /* Restore larger font size */
+    }
+
+    h2 {
+        font-size: 1.8em; /* Restore larger font size */
+    }
+
+    h3 {
+        font-size: 1.4em; /* Restore larger font size */
+    }
+
+    header {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+    }
+
+    section {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+
+    ul li, ol li {
+        margin-bottom: 8px; /* Restore larger margin */
+    }
+
+    .screenshot-container {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+}
+
+/* Specific adjustments for very small screens (e.g., older iPhones in portrait) */
+@media (max-width: 375px) {
+    .container {
+        font-size: 0.9em; /* Slightly smaller base font */
+        padding: 10px;
+        margin: 5px; /* Even smaller margin for very narrow screens */
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    h3 {
+        font-size: 1.1em;
+    }
+    .copy-button {
+        padding: 3px 6px; /* Smaller button */
+        font-size: 0.8em;
+        top: 2px;
+        right: 2px;
+    }
+}
+
+/* Ensure smooth animations on all devices */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

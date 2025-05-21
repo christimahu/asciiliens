@@ -22,8 +22,42 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Job to build, lint, and test the Rust project
+  build_and_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt # Install clippy and rustfmt components
+          # You might want to specify a specific Rust version like '1.70.0' instead of 'stable'
+          # if your project relies on a particular compiler version.
+
+      - name: Run cargo fmt --check
+        # This step checks if the code is formatted according to rustfmt rules.
+        # It won't modify files but will fail if they are not formatted.
+        run: cargo fmt -- --check
+
+      - name: Run cargo clippy
+        # Run Clippy and treat all warnings as errors (-D warnings)
+        # This ensures the workflow fails if any clippy lints are found.
+        run: cargo clippy -- -D warnings
+
+      - name: Run cargo test
+        # Execute your unit and integration tests.
+        run: cargo test
+
+      - name: Build Rust project (release mode)
+        # Ensure the project compiles successfully in release mode.
+        run: cargo build --release
+
+  # Deploy job now depends on the build_and_lint job
   deploy:
+    # This job will only run if the 'build_and_lint' job completes successfully
+    needs: build_and_lint
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload the 'web' directory which contains your static content for GitHub Pages
           path: 'web'
       - name: Deploy to GitHub Pages
         id: deployment
